@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Алёна — Туры по России</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7F2EB;
+    --birch: #E8DDD0;
+    --copper: #B5722A;
+    --ember: #D4541A;
+    --forest: #2C3B2D;
+    --dusk: #6B5B4E;
+    --white: #FDFAF6;
+    --charcoal: #1A1A18;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(247,242,235,0.88);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(181,114,42,0.12);
+  }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 600;
+    color: var(--forest); letter-spacing: 0.04em;
+  }
+  .nav-logo span { color: var(--copper); font-style: italic; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 13px; font-weight: 500; letter-spacing: 0.06em;
+    color: var(--dusk); text-decoration: none; text-transform: uppercase;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--ember); }
+  .nav-cta {
+    background: var(--forest); color: var(--white);
+    border: none; padding: 11px 24px; font-size: 13px; font-weight: 500;
+    letter-spacing: 0.04em; cursor: pointer; border-radius: 2px;
+    transition: background .2s;
+  }
+  .nav-cta:hover { background: var(--copper); }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr; align-items: center;
+    padding: 120px 48px 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(181,114,42,0.09) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 60% at 20% 80%, rgba(44,59,45,0.07) 0%, transparent 60%);
+  }
+  /* Geometric accent lines */
+  .hero-bg::before {
+    content: '';
+    position: absolute; top: 0; right: 38%;
+    width: 1px; height: 100%;
+    background: linear-gradient(to bottom, transparent, rgba(181,114,42,0.25), transparent);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 560px; }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--copper);
+    margin-bottom: 28px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(181,114,42,0.35);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(48px, 5.5vw, 76px);
+    font-weight: 300; line-height: 1.08;
+    color: var(--forest); margin-bottom: 28px;
+  }
+  .hero h1 em { font-style: italic; color: var(--copper); }
+  .hero-sub {
+    font-size: 16px; line-height: 1.65;
+    color: var(--dusk); margin-bottom: 44px; max-width: 440px;
+  }
+  .hero-actions { display: flex; align-items: center; gap: 24px; }
+  .btn-primary {
+    background: var(--ember); color: var(--white);
+    border: none; padding: 16px 36px;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.03em; cursor: pointer; border-radius: 2px;
+    transition: background .2s, transform .15s;
+    text-decoration: none; display: inline-block;
+  }
+  .btn-primary:hover { background: var(--copper); transform: translateY(-1px); }
+  .btn-ghost {
+    color: var(--forest); font-size: 14px; font-weight: 500;
+    text-decoration: none; letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 8px;
+    border-bottom: 1px solid var(--forest); padding-bottom: 2px;
+    transition: color .2s, border-color .2s;
+  }
+  .btn-ghost:hover { color: var(--copper); border-color: var(--copper); }
+
+  .hero-stats {
+    margin-top: 60px; display: flex; gap: 44px;
+  }
+  .stat-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 300; color: var(--forest); line-height: 1;
+  }
+  .stat-label {
+    font-size: 12px; color: var(--dusk); margin-top: 4px;
+    letter-spacing: 0.04em; line-height: 1.4;
+  }
+
+  /* Hero right: Alena photo frame */
+  .hero-visual {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center; align-items: flex-end;
+    height: 560px;
+  }
+  .photo-frame {
+    position: relative; width: 340px; height: 480px;
+  }
+  .photo-border {
+    position: absolute; inset: -12px -12px 12px 12px;
+    border: 1px solid rgba(181,114,42,0.35);
+    border-radius: 2px; z-index: 0;
+  }
+  .photo-img {
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: top center;
+    border-radius: 2px;
+    position: relative; z-index: 1;
+    filter: saturate(0.85) contrast(1.05);
+  }
+  .photo-tag {
+    position: absolute; bottom: -20px; right: -24px; z-index: 2;
+    background: var(--forest); color: var(--white);
+    padding: 12px 18px; border-radius: 2px;
+    font-size: 12px; line-height: 1.5;
+  }
+  .photo-tag strong {
+    display: block; font-size: 18px;
+    font-family: 'Cormorant Garamond', serif; font-weight: 600;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: 100px 48px;
+  }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--copper);
+    margin-bottom: 16px; display: block;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 54px);
+    font-weight: 300; line-height: 1.1;
+    color: var(--forest); margin-bottom: 20px;
+  }
+  .section-title em { font-style: italic; color: var(--copper); }
+  .section-body {
+    font-size: 16px; line-height: 1.7;
+    color: var(--dusk); max-width: 520px;
+  }
+
+  /* ─── FILTER / QUIZ ─── */
+  .filter-section {
+    background: var(--forest);
+    padding: 80px 48px;
+  }
+  .filter-section .section-label { color: rgba(181,114,42,0.9); }
+  .filter-section .section-title { color: var(--white); }
+  .filter-section .section-body { color: rgba(255,255,255,0.6); }
+
+  .filter-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 16px; margin-top: 48px;
+  }
+  .filter-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 28px 20px;
+    border-radius: 2px; cursor: pointer;
+    transition: background .2s, border-color .2s, transform .15s;
+    text-align: center;
+  }
+  .filter-card:hover {
+    background: rgba(181,114,42,0.2);
+    border-color: rgba(181,114,42,0.5);
+    transform: translateY(-2px);
+  }
+  .filter-card.active {
+    background: rgba(181,114,42,0.25);
+    border-color: var(--copper);
+  }
+  .filter-icon { font-size: 32px; margin-bottom: 12px; }
+  .filter-name {
+    color: var(--white); font-size: 14px; font-weight: 500; margin-bottom: 6px;
+  }
+  .filter-desc { color: rgba(255,255,255,0.45); font-size: 12px; line-height: 1.5; }
+
+  .filter-cta-wrap { margin-top: 40px; display: flex; align-items: center; gap: 20px; }
+  .filter-cta {
+    background: var(--copper); color: var(--white);
+    border: none; padding: 16px 36px; font-size: 14px; font-weight: 500;
+    cursor: pointer; border-radius: 2px; transition: background .2s;
+    letter-spacing: 0.03em;
+  }
+  .filter-cta:hover { background: var(--ember); }
+  .filter-note { color: rgba(255,255,255,0.4); font-size: 13px; }
+
+  /* ─── HONEST CONTENT ─── */
+  .honest-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 60px; align-items: center; margin-top: 60px;
+  }
+  .honest-left { display: flex; flex-direction: column; gap: 24px; }
+  .video-card {
+    background: var(--birch); border-radius: 4px; overflow: hidden;
+    aspect-ratio: 16/9; position: relative; cursor: pointer;
+  }
+  .video-thumb {
+    width: 100%; height: 100%; object-fit: cover;
+    background: linear-gradient(135deg, #c5a882, #8a6d50);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 48px;
+  }
+  .play-btn {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+    background: rgba(26,26,24,0.3);
+  }
+  .play-circle {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: rgba(247,242,235,0.9);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px; padding-left: 4px;
+    transition: transform .2s;
+  }
+  .video-card:hover .play-circle { transform: scale(1.08); }
+  .video-label { padding: 14px 16px; font-size: 13px; color: var(--dusk); }
+
+  .honest-right { display: flex; flex-direction: column; gap: 20px; }
+  .fact-item {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 20px; border-radius: 2px;
+    border: 1px solid rgba(181,114,42,0.15);
+    transition: border-color .2s;
+  }
+  .fact-item:hover { border-color: rgba(181,114,42,0.4); }
+  .fact-icon { font-size: 28px; flex-shrink: 0; margin-top: 2px; }
+  .fact-title { font-size: 15px; font-weight: 600; color: var(--forest); margin-bottom: 6px; }
+  .fact-text { font-size: 13px; line-height: 1.6; color: var(--dusk); }
+
+  /* ─── LOGISTICS ─── */
+  .logistics-section { background: var(--white); }
+  .logistics-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 60px;
+    border: 1px solid rgba(181,114,42,0.15);
+    border-radius: 2px; overflow: hidden;
+  }
+  .step {
+    padding: 40px 28px;
+    border-right: 1px solid rgba(181,114,42,0.12);
+    position: relative;
+    transition: background .2s;
+  }
+  .step:last-child { border-right: none; }
+  .step:hover { background: rgba(181,114,42,0.04); }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px; font-weight: 300;
+    color: rgba(181,114,42,0.2); line-height: 1;
+    margin-bottom: 20px;
+  }
+  .step-title { font-size: 15px; font-weight: 600; color: var(--forest); margin-bottom: 10px; }
+  .step-text { font-size: 13px; line-height: 1.65; color: var(--dusk); }
+
+  .logistics-bottom {
+    margin-top: 48px;
+    padding: 32px 36px;
+    background: var(--forest); border-radius: 2px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logistics-bottom p {
+    color: var(--white); font-size: 16px;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300; font-style: italic;
+    max-width: 480px; line-height: 1.5;
+  }
+  .logistics-bottom p strong { font-weight: 600; color: #E8B56A; font-style: normal; }
+
+  /* ─── GUARANTEES ─── */
+  .guarantees-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 60px;
+  }
+  .guarantee-card {
+    padding: 36px 28px;
+    border: 1px solid rgba(181,114,42,0.18);
+    border-radius: 2px; position: relative; overflow: hidden;
+    transition: transform .2s, border-color .2s;
+  }
+  .guarantee-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--copper);
+  }
+  .guarantee-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--copper), var(--ember));
+    opacity: 0; transition: opacity .2s;
+  }
+  .guarantee-card:hover::before { opacity: 1; }
+  .guarantee-icon { font-size: 36px; margin-bottom: 20px; }
+  .guarantee-title { font-size: 17px; font-weight: 600; color: var(--forest); margin-bottom: 12px; }
+  .guarantee-text { font-size: 14px; line-height: 1.7; color: var(--dusk); }
+
+  /* ─── VALUE vs DIY ─── */
+  .value-section { background: var(--cream); }
+  .comparison {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px; margin-top: 60px;
+  }
+  .comp-col {
+    padding: 40px 32px; border-radius: 2px;
+  }
+  .comp-col.diy {
+    background: var(--birch);
+    border: 1px solid rgba(181,114,42,0.2);
+  }
+  .comp-col.alena {
+    background: var(--forest); color: var(--white);
+  }
+  .comp-head {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 28px;
+    padding-bottom: 16px; border-bottom: 1px solid rgba(181,114,42,0.25);
+  }
+  .comp-col.alena .comp-head { border-color: rgba(255,255,255,0.15); }
+  .comp-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    margin-bottom: 18px; font-size: 14px; line-height: 1.55;
+  }
+  .comp-item .ci-icon { flex-shrink: 0; margin-top: 1px; font-size: 16px; }
+  .comp-col.diy .comp-item { color: var(--dusk); }
+  .comp-col.alena .comp-item { color: rgba(255,255,255,0.8); }
+  .comp-col.alena .comp-item strong { color: var(--white); }
+  .big-save {
+    margin-top: 32px; padding: 20px;
+    background: rgba(181,114,42,0.15); border-radius: 2px;
+    text-align: center;
+  }
+  .big-save-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 300; color: #E8B56A; line-height: 1;
+  }
+  .big-save-label { color: rgba(255,255,255,0.6); font-size: 12px; margin-top: 4px; }
+
+  /* ─── REVIEWS ─── */
+  .reviews-section { background: var(--white); }
+  .reviews-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 24px; margin-top: 60px;
+  }
+  .review-card {
+    padding: 32px 28px;
+    border: 1px solid rgba(181,114,42,0.12);
+    border-radius: 2px; position: relative;
+    transition: border-color .2s;
+  }
+  .review-card:hover { border-color: rgba(181,114,42,0.35); }
+  .review-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px; line-height: 0.6;
+    color: rgba(181,114,42,0.25);
+    margin-bottom: 16px; display: block;
+  }
+  .review-text {
+    font-size: 14px; line-height: 1.75;
+    color: var(--charcoal); margin-bottom: 24px;
+  }
+  .review-stars { color: var(--copper); font-size: 14px; margin-bottom: 16px; }
+  .review-author { display: flex; align-items: center; gap: 12px; }
+  .review-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--birch); display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .review-name { font-size: 13px; font-weight: 600; color: var(--forest); }
+  .review-dest { font-size: 12px; color: var(--dusk); margin-top: 2px; }
+
+  .reviews-stat {
+    margin-top: 56px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 60px;
+  }
+  .rs-item { text-align: center; }
+  .rs-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 52px; font-weight: 300; color: var(--forest); line-height: 1;
+  }
+  .rs-label { font-size: 13px; color: var(--dusk); margin-top: 6px; }
+  .rs-div { width: 1px; height: 60px; background: rgba(181,114,42,0.2); }
+
+  /* ─── CTA ─── */
+  .cta-section {
+    background: linear-gradient(135deg, var(--forest) 0%, #1e2d1f 100%);
+    text-align: center; padding: 120px 48px;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(181,114,42,0.12) 0%, transparent 70%);
+  }
+  .cta-section .section-label { color: rgba(181,114,42,0.8); }
+  .cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 5vw, 68px);
+    font-weight: 300; color: var(--white);
+    line-height: 1.1; margin-bottom: 20px;
+    position: relative;
+  }
+  .cta-title em { font-style: italic; color: #E8B56A; }
+  .cta-body {
+    font-size: 16px; line-height: 1.65; color: rgba(255,255,255,0.6);
+    max-width: 440px; margin: 0 auto 48px;
+    position: relative;
+  }
+  .cta-form {
+    display: flex; gap: 0; max-width: 420px; margin: 0 auto;
+    position: relative;
+  }
+  .cta-input {
+    flex: 1; padding: 18px 20px;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-right: none;
+    background: rgba(255,255,255,0.07);
+    color: var(--white); font-size: 15px;
+    border-radius: 2px 0 0 2px; outline: none;
+    transition: border-color .2s;
+    font-family: 'Inter', sans-serif;
+  }
+  .cta-input::placeholder { color: rgba(255,255,255,0.35); }
+  .cta-input:focus { border-color: rgba(181,114,42,0.5); }
+  .cta-submit {
+    background: var(--copper); color: var(--white);
+    border: none; padding: 18px 28px; font-size: 14px; font-weight: 500;
+    cursor: pointer; border-radius: 0 2px 2px 0;
+    transition: background .2s; white-space: nowrap;
+    font-family: 'Inter', sans-serif; letter-spacing: 0.03em;
+  }
+  .cta-submit:hover { background: var(--ember); }
+  .cta-disclaimer {
+    margin-top: 16px; font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    position: relative;
+  }
+  .cta-promise {
+    margin-top: 48px; display: flex; justify-content: center; gap: 36px;
+    position: relative;
+  }
+  .promise-item {
+    display: flex; align-items: center; gap: 8px;
+    color: rgba(255,255,255,0.5); font-size: 13px;
+  }
+  .promise-item span:first-child { color: var(--copper); font-size: 16px; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--charcoal); padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px; font-weight: 600; color: var(--white);
+  }
+  .footer-logo span { color: var(--copper); font-style: italic; }
+  .footer-links { display: flex; gap: 24px; }
+  .footer-links a {
+    font-size: 12px; color: rgba(255,255,255,0.35);
+    text-decoration: none; letter-spacing: 0.04em;
+    transition: color .2s;
+  }
+  .footer-links a:hover { color: var(--copper); }
+  .footer-social { display: flex; gap: 16px; }
+  .social-btn {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5); font-size: 15px;
+    text-decoration: none; transition: background .2s, color .2s;
+  }
+  .social-btn:hover { background: var(--copper); color: var(--white); }
+
+  /* ─── SCROLL ANIMATIONS ─── */
+  .fade-in {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 100px 20px 60px; gap: 40px; }
+    .hero-visual { height: auto; justify-content: flex-start; }
+    .photo-frame { width: 280px; height: 380px; }
+    .hero-stats { gap: 28px; }
+    section { padding: 60px 20px; }
+    .filter-grid { grid-template-columns: repeat(2, 1fr); }
+    .logistics-steps { grid-template-columns: 1fr 1fr; }
+    .step { border-bottom: 1px solid rgba(181,114,42,0.12); }
+    .honest-grid, .comparison { grid-template-columns: 1fr; }
+    .guarantees-grid, .reviews-grid { grid-template-columns: 1fr; }
+    .reviews-stat { gap: 28px; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 20px; text-align: center; }
+    .cta-form { flex-direction: column; }
+    .cta-input { border-right: 1px solid rgba(255,255,255,0.15); border-radius: 2px 2px 0 0; }
+    .cta-submit { border-radius: 0 0 2px 2px; }
+    .logistics-bottom { flex-direction: column; gap: 20px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Алёна <span>Путешествия</span></div>
+  <ul class="nav-links">
+    <li><a href="#filter">Направления</a></li>
+    <li><a href="#honest">О турах</a></li>
+    <li><a href="#guarantees">Гарантии</a></li>
+    <li><a href="#reviews">Отзывы</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">
+    Получить путеводитель
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+
+  <div class="hero-content">
+    <span class="hero-eyebrow">Туры по России · Лично проверено</span>
+    <h1>Вся Россия<br>в <em>одном</em><br>месте</h1>
+    <p class="hero-sub">
+      3800+ туров от прямых организаторов без наценок. Я лично проверила каждый маршрут, чтобы ваш отпуск совпал с ожиданиями на 100%.
+    </p>
+    <div class="hero-actions">
+      <a href="#filter" class="btn-primary">Подобрать тур</a>
+      <a href="#honest" class="btn-ghost">Смотреть обзоры →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-val">3800<span style="font-size:24px;color:var(--copper)">+</span></div>
+        <div class="stat-label">туров от прямых<br>организаторов</div>
+      </div>
+      <div style="width:1px;background:rgba(181,114,42,0.2);flex-shrink:0"></div>
+      <div>
+        <div class="stat-val">24/7</div>
+        <div class="stat-label">экспертная<br>поддержка</div>
+      </div>
+      <div style="width:1px;background:rgba(181,114,42,0.2);flex-shrink:0"></div>
+      <div>
+        <div class="stat-val">85<span style="font-size:24px;color:var(--copper)">%</span></div>
+        <div class="stat-label">туристов возвращаются<br>снова</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="photo-frame">
+      <div class="photo-border"></div>
+      <img class="photo-img" src="/mnt/user-data/uploads/1781280186594_image.png" alt="Алёна — ваш эксперт по России">
+      <div class="photo-tag">
+        <strong>Алёна</strong>
+        Ваш эксперт по<br>путешествиям в России
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FILTER -->
+<section class="filter-section" id="filter">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-label">Умный подбор</span>
+    <h2 class="section-title" style="color:var(--white)">Не знаете, куда поехать?<br><em style="color:#E8B56A">Я подберу за вас</em></h2>
+    <p class="section-body">Выберите, что вам близко — и я покажу лучшие маршруты от ленивого отдыха до настоящих приключений.</p>
+
+    <div class="filter-grid fade-in">
+      <div class="filter-card" onclick="this.classList.toggle('active')">
+        <div class="filter-icon">🏖️</div>
+        <div class="filter-name">Море и пляж</div>
+        <div class="filter-desc">Сочи, Крым, Анапа — тёплое море без загранпаспорта</div>
+      </div>
+      <div class="filter-card" onclick="this.classList.toggle('active')">
+        <div class="filter-icon">🏔️</div>
+        <div class="filter-name">Горы и природа</div>
+        <div class="filter-desc">Алтай, Кавказ, Байкал — маршруты для любого уровня подготовки</div>
+      </div>
+      <div class="filter-card" onclick="this.classList.toggle('active')">
+        <div class="filter-icon">🏛️</div>
+        <div class="filter-name">Культура и история</div>
+        <div class="filter-desc">Петербург, Москва, Золотое кольцо — экскурсии с настоящими гидами</div>
+      </div>
+      <div class="filter-card" onclick="this.classList.toggle('active')">
+        <div class="filter-icon">🛻</div>
+        <div class="filter-name">Активный отдых</div>
+        <div class="filter-desc">Джип-туры, рафтинг, треккинг — адреналин под контролем профессионалов</div>
+      </div>
+      <div class="filter-card" onclick="this.classList.toggle('active')">
+        <div class="filter-icon">🫂</div>
+        <div class="filter-name">Семья с детьми</div>
+        <div class="filter-desc">Безопасные маршруты с детской программой и удобной логистикой</div>
+      </div>
+      <div class="filter-card" onclick="this.classList.toggle('active')">
+        <div class="filter-icon">💆</div>
+        <div class="filter-name">Отдых и wellness</div>
+        <div class="filter-desc">Санатории, спа, термальные источники — перезагрузка по-настоящему</div>
+      </div>
+      <div class="filter-card" onclick="this.classList.toggle('active')">
+        <div class="filter-icon">🎒</div>
+        <div class="filter-name">Соло-путешествие</div>
+        <div class="filter-desc">Безопасно, комфортно и без лишней суеты — идеально для одиночного трипа</div>
+      </div>
+      <div class="filter-card" onclick="this.classList.toggle('active')">
+        <div class="filter-icon">❄️</div>
+        <div class="filter-name">Зимние туры</div>
+        <div class="filter-desc">Байкал зимой, Карелия, горнолыжные курорты — Россия прекрасна в снегу</div>
+      </div>
+    </div>
+
+    <div class="filter-cta-wrap">
+      <button class="filter-cta">Показать подходящие туры</button>
+      <span class="filter-note">Или напишите мне в Telegram — подберу за 5 минут</span>
+    </div>
+  </div>
+</section>
+
+<!-- HONEST CONTENT -->
+<section id="honest">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-label">Честный контент</span>
+    <h2 class="section-title">Россия <em>без фильтров</em><br>и фотошопа</h2>
+    <p class="section-body">Я лично объехала каждый отель и маршрут. Снимала видео без ретуши, чтобы ваши ожидания совпали с реальностью.</p>
+
+    <div class="honest-grid">
+      <div class="honest-left fade-in">
+        <div class="video-card">
+          <div class="video-thumb" style="background:linear-gradient(135deg,#8a9b6b,#5a7040)">
+            <span>🏔️</span>
+          </div>
+          <div class="play-btn"><div class="play-circle">▶</div></div>
+          <div class="video-label">Алтай. Настоящий — без глянца</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <div class="video-card" style="aspect-ratio:4/3">
+            <div class="video-thumb" style="background:linear-gradient(135deg,#6b8a9b,#3d6070)">
+              <span>🌊</span>
+            </div>
+            <div class="play-btn"><div class="play-circle" style="width:44px;height:44px;font-size:18px">▶</div></div>
+            <div class="video-label" style="font-size:12px">Байкал зимой</div>
+          </div>
+          <div class="video-card" style="aspect-ratio:4/3">
+            <div class="video-thumb" style="background:linear-gradient(135deg,#9b7a6b,#705040)">
+              <span>🏛️</span>
+            </div>
+            <div class="play-btn"><div class="play-circle" style="width:44px;height:44px;font-size:18px">▶</div></div>
+            <div class="video-label" style="font-size:12px">Петербург — закулисье</div>
+          </div>
+        </div>
+      </div>
+      <div class="honest-right fade-in">
+        <div class="fact-item">
+          <div class="fact-icon">🔍</div>
+          <div>
+            <div class="fact-title">Личная проверка каждого тура</div>
+            <div class="fact-text">Я лично побывала в каждой локации. Нашла 3 «популярных» отеля с реальными проблемами и убрала их из списка — вы не узнаете об этих разочарованиях на личном опыте.</div>
+          </div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">📹</div>
+          <div>
+            <div class="fact-title">Видео без монтажа и спонсоров</div>
+            <div class="fact-text">Никакой рекламы и пасхальных яиц от отелей. Снимаю то, что вижу — включая неудобные моменты, которые важно знать заранее.</div>
+          </div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">⭐</div>
+          <div>
+            <div class="fact-title">Честные рейтинги, не накрученные</div>
+            <div class="fact-text">Рейтинги формируются из реальных отзывов клиентов, которые уже съездили. Ни одна звезда не куплена.</div>
+          </div>
+        </div>
+        <div class="fact-item">
+          <div class="fact-icon">💬</div>
+          <div>
+            <div class="fact-title">Сообщество туристов в Telegram</div>
+            <div class="fact-text">3200+ участников делятся свежими впечатлениями. Спросите любого из них — и услышите правду от тех, кто уже съездил на прошлой неделе.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGISTICS -->
+<section class="logistics-section" id="logistics">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-label">Бесшовная логистика</span>
+    <h2 class="section-title">От двери до двери —<br><em>каждый шаг продуман</em></h2>
+    <p class="section-body">Никаких сюрпризов в пути. Мы думаем о каждой пересадке и о том, что делать, если что-то пошло не так.</p>
+
+    <div class="logistics-steps fade-in">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-title">Подбор и бронирование</div>
+        <div class="step-text">Выбираем маршрут под вас, бронируем все отели и трансферы. Деньги списываются только после подтверждения.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-title">Цифровой путеводитель</div>
+        <div class="step-text">Получаете офлайн-карты, расписание и контакты гида в удобном формате — всё работает без интернета.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-title">Поддержка в пути</div>
+        <div class="step-text">Я на связи в Telegram 24/7. Даже если интернет пропадёт — у вас есть резервный номер для экстренной связи.</div>
+      </div>
+      <div class="step">
+        <div class="step-num">04</div>
+        <div class="step-title">Возвращение домой</div>
+        <div class="step-text">Проводим вас до финальной точки. После поездки — короткий опрос, чтобы следующий тур стал ещё лучше.</div>
+      </div>
+    </div>
+
+    <div class="logistics-bottom">
+      <p>«Ваш цифровой гид всегда под рукой. Мы продумали <strong>каждую пересадку</strong> и будем на связи в Telegram, даже если интернет пропадёт»</p>
+      <button class="btn-primary" style="white-space:nowrap;flex-shrink:0">Написать в Telegram</button>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEES -->
+<section id="guarantees">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-label">Безопасность и гарантии</span>
+    <h2 class="section-title">Ваши деньги<br><em>под защитой</em></h2>
+    <p class="section-body">Мы убрали все финансовые риски и позаботились о вашей безопасности на маршруте.</p>
+
+    <div class="guarantees-grid fade-in">
+      <div class="guarantee-card">
+        <div class="guarantee-icon">🔒</div>
+        <div class="guarantee-title">Безопасная оплата</div>
+        <div class="guarantee-text">Деньги списываются только после подтверждения тура. Мы используем защищённый эскроу-счёт — организатор получает оплату только когда вы уже в пути.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">↩️</div>
+        <div class="guarantee-title">Бесплатная отмена</div>
+        <div class="guarantee-text">Отмените бронирование за 7 дней до поездки и получите полный возврат. Без вопросов, без штрафов — ваши планы могут меняться.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">🛡️</div>
+        <div class="guarantee-title">Проверенные маршруты</div>
+        <div class="guarantee-text">Каждый тур прошёл проверку безопасности. Я не добавляю маршруты в опасные районы и всегда сообщаю о реальной обстановке.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">📋</div>
+        <div class="guarantee-title">Официальный договор</div>
+        <div class="guarantee-text">Вы получаете полный пакет документов — договор, ваучеры, страховку. Ничего на словах — только письменные обязательства.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">🏥</div>
+        <div class="guarantee-title">Страхование в пути</div>
+        <div class="guarantee-text">Туристическая страховка включена в каждый тур. Медицинская помощь, задержки рейсов, потеря багажа — всё покрыто.</div>
+      </div>
+      <div class="guarantee-card">
+        <div class="guarantee-icon">⚡</div>
+        <div class="guarantee-title">Экстренная помощь</div>
+        <div class="guarantee-text">Если что-то пошло не так — звоните на экстренный номер. Мы решим проблему в течение 2 часов и организуем альтернативу.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE vs DIY -->
+<section class="value-section">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-label">Ценность услуги</span>
+    <h2 class="section-title">За что вы платите<br>и что <em>получаете</em></h2>
+    <p class="section-body">Мы экономим вам 40 часов планирования и даём доступ к тому, что нельзя найти самостоятельно.</p>
+
+    <div class="comparison fade-in">
+      <div class="comp-col diy">
+        <div class="comp-head" style="color:var(--dusk)">🔨 Сами организовали</div>
+        <div class="comp-item"><div class="ci-icon">⏰</div><div>40+ часов на поиск и сравнение вариантов</div></div>
+        <div class="comp-item"><div class="ci-icon">🎲</div><div>Риск ошибиться с отелем или маршрутом по отзывам</div></div>
+        <div class="comp-item"><div class="ci-icon">📞</div><div>Сами решаете проблемы — в незнакомом месте, на незнакомом языке</div></div>
+        <div class="comp-item"><div class="ci-icon">🚫</div><div>Нет доступа к закрытым локациям и авторским экскурсиям</div></div>
+        <div class="comp-item"><div class="ci-icon">💸</div><div>Разрозненные бронирования без общей страховки</div></div>
+        <div class="comp-item"><div class="ci-icon">📵</div><div>Нет поддержки, если что-то пошло не так</div></div>
+      </div>
+      <div class="comp-col alena">
+        <div class="comp-head" style="color:rgba(255,255,255,0.5)">✨ С Алёной</div>
+        <div class="comp-item"><div class="ci-icon">⚡</div><div><strong>5 минут</strong> — и идеальный тур подобран под вас</div></div>
+        <div class="comp-item"><div class="ci-icon">✅</div><div><strong>Лично проверенные</strong> маршруты и отели без сюрпризов</div></div>
+        <div class="comp-item"><div class="ci-icon">🎧</div><div>Поддержка <strong>24/7 в Telegram</strong> — мы решим любую проблему</div></div>
+        <div class="comp-item"><div class="ci-icon">🗝️</div><div>Доступ к <strong>закрытым локациям</strong> и авторским экскурсиям</div></div>
+        <div class="comp-item"><div class="ci-icon">🛡️</div><div><strong>Полная страховка</strong> и безопасная оплата включены</div></div>
+        <div class="comp-item"><div class="ci-icon">🔄</div><div><strong>Бесплатная отмена</strong> — ваши деньги всегда в безопасности</div></div>
+        <div class="big-save">
+          <div class="big-save-num">40 ч</div>
+          <div class="big-save-label">экономии вашего времени на планирование</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section" id="reviews">
+  <div style="max-width:1100px;margin:0 auto">
+    <span class="section-label">Живые отзывы</span>
+    <h2 class="section-title"><em>85%</em> туристов<br>возвращаются снова</h2>
+    <p class="section-body">Не верьте нам на слово. Читайте истории реальных людей, чьи проблемы мы решили в режиме реального времени.</p>
+
+    <div class="reviews-grid fade-in">
+      <div class="review-card">
+        <span class="review-quote">"</span>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Летели с мужем на Байкал — первый раз такой дальний перелёт. Алёна прислала подробный план с пересадками, такси и контактами гида. Ничего не пришлось придумывать самим. Просто наслаждались.</p>
+        <div class="review-author">
+          <div class="review-avatar">👩</div>
+          <div>
+            <div class="review-name">Марина Соловьёва</div>
+            <div class="review-dest">Тур на Байкал · февраль 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <span class="review-quote">"</span>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Бронировал Алтай, и в последний момент возникла проблема с отелем. Написал в Телеграм в 23:00 — к утру всё было решено, да ещё и нашли вариант лучше. Такого сервиса я не ожидал.</p>
+        <div class="review-author">
+          <div class="review-avatar">👨</div>
+          <div>
+            <div class="review-name">Дмитрий Орлов</div>
+            <div class="review-dest">Джип-тур на Алтае · июль 2024</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <span class="review-quote">"</span>
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Поехали семьёй с двумя детьми в Карелию. Боялась, что будет сложно. Но всё было идеально — детская программа, удобные трансферы, и гид, который знал, как заинтересовать ребят. Едем снова!</p>
+        <div class="review-author">
+          <div class="review-avatar">👩</div>
+          <div>
+            <div class="review-name">Екатерина Новикова</div>
+            <div class="review-dest">Семейный тур в Карелию · август 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews-stat fade-in">
+      <div class="rs-item">
+        <div class="rs-val">4.9</div>
+        <div class="rs-label">средний рейтинг туров</div>
+      </div>
+      <div class="rs-div"></div>
+      <div class="rs-item">
+        <div class="rs-val">1240</div>
+        <div class="rs-label">довольных путешественников</div>
+      </div>
+      <div class="rs-div"></div>
+      <div class="rs-item">
+        <div class="rs-val">85%</div>
+        <div class="rs-label">бронируют повторно</div>
+      </div>
+      <div class="rs-div"></div>
+      <div class="rs-item">
+        <div class="rs-val">47</div>
+        <div class="rs-label">направлений по России</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="cta">
+  <span class="section-label">Первый шаг — бесплатно</span>
+  <h2 class="cta-title">Получите путеводитель<br>по <em>9 лучшим</em> направлениям</h2>
+  <p class="cta-body">Бесплатный гид с маршрутами, ценами и секретными локациями — пришлю прямо в Telegram. Просто оставьте номер.</p>
+
+  <div class="cta-form">
+    <input type="tel" class="cta-input" placeholder="+7 (999) 000-00-00">
+    <button class="cta-submit">Получить →</button>
+  </div>
+  <p class="cta-disclaimer">Только путеводитель. Никакого спама. Отписаться можно в один клик.</p>
+
+  <div class="cta-promise">
+    <div class="promise-item"><span>🔒</span><span>Данные под защитой</span></div>
+    <div class="promise-item"><span>⚡</span><span>Пришлю за 5 минут</span></div>
+    <div class="promise-item"><span>✨</span><span>Полностью бесплатно</span></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Алёна <span>Путешествия</span></div>
+  <div class="footer-links">
+    <a href="#">Направления</a>
+    <a href="#">Гарантии</a>
+    <a href="#">Отзывы</a>
+    <a href="#">Контакты</a>
+  </div>
+  <div class="footer-social">
+    <a href="#" class="social-btn" title="Telegram">✈</a>
+    <a href="#" class="social-btn" title="ВКонтакте">В</a>
+    <a href="#" class="social-btn" title="Instagram">◻</a>
+  </div>
+</footer>
+
+<script>
+  // Fade-in on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Smooth scroll for anchor links
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const id = a.getAttribute('href');
+      if (id.length > 1) {
+        e.preventDefault();
+        document.querySelector(id)?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Phone input formatting
+  const input = document.querySelector('.cta-input');
+  if (input) {
+    input.addEventListener('input', () => {
+      let v = input.value.replace(/\D/g, '');
+      if (v.startsWith('7') || v.startsWith('8')) v = v.slice(1);
+      if (v.length === 0) { input.value = ''; return; }
+      let fmt = '+7 (';
+      if (v.length > 0) fmt += v.slice(0, 3);
+      if (v.length >= 3) fmt += ') ' + v.slice(3, 6);
+      if (v.length >= 6) fmt += '-' + v.slice(6, 8);
+      if (v.length >= 8) fmt += '-' + v.slice(8, 10);
+      input.value = fmt;
+    });
+  }
+
+  // CTA submit
+  document.querySelector('.cta-submit')?.addEventListener('click', () => {
+    const phone = document.querySelector('.cta-input').value;
+    if (phone.length >= 16) {
+      document.querySelector('.cta-form').innerHTML = 
+        '<div style="color:#E8B56A;font-family:Cormorant Garamond,serif;font-size:24px;font-style:italic;text-align:center;padding:20px">✓ Путеводитель уже в пути! Загляните в Telegram.</div>';
+    } else {
+      document.querySelector('.cta-input').style.borderColor = 'rgba(212,84,26,0.7)';
+    }
+  });
+</script>
+</body>
+</html>

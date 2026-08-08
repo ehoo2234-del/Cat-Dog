@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>ГРАВИТАЦИЯ — Школа выравнивания в Твери</title>
+    <!-- Google Fonts & Simple CSS Reset -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefcf5;
+            color: #1f1e2b;
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        /* Основной контейнер с перспективой */
+        .main-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem 4rem;
+            perspective: 1800px;
+        }
+
+        /* Базовые стили для текста и карточек — сохраняем контент, добавляем глубину */
+        h1, h2, h3 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 7vw, 5rem);
+            background: linear-gradient(135deg, #2b2d42, #4a4e6b);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 6px 14px rgba(0,0,0,0.08);
+        }
+
+        h2 {
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50%;
+            height: 3px;
+            background: #c0b9a0;
+            border-radius: 4px;
+        }
+
+        /* Универсальный hover-3D для блоков */
+        .card-3d, .service-card, .equip-card, .price-card, .benefit-item, .teacher-card, .contact-card {
+            transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1), box-shadow 0.35s ease;
+            transform-style: preserve-3d;
+            will-change: transform;
+            background: rgba(255,255,245,0.85);
+            backdrop-filter: blur(2px);
+            border-radius: 32px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .card-3d:hover, .service-card:hover, .equip-card:hover, .price-card:hover, .benefit-item:hover, .teacher-card:hover {
+            transform: translateY(-6px) rotateX(1.5deg) rotateY(1.2deg);
+            box-shadow: 0 32px 48px -18px rgba(0,0,0,0.25);
+            background: white;
+        }
+
+        /* Параллакс-фон (лёгкая глубина) */
+        .parallax-bg {
+            background-image: radial-gradient(circle at 25% 40%, rgba(180,170,140,0.12) 1.2%, transparent 2%);
+            background-size: 48px 48px;
+        }
+
+        /* Эффект появления при скролле */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: all 0.7s cubic-bezier(0.2, 0.95, 0.4, 1.1);
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Сетки и расположение */
+        .grid-2col, .services-grid, .benefits-grid, .equip-grid, .prices-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .service-card, .equip-card, .price-card, .benefit-item {
+            padding: 1.8rem;
+            background: white;
+            border-radius: 32px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2d3e50;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 60px;
+            font-weight: 500;
+            text-decoration: none;
+            transition: 0.2s;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+        }
+        .btn:hover {
+            background: #1f2c3a;
+            transform: scale(1.02);
+            box-shadow: 0 12px 22px -8px rgba(0,0,0,0.2);
+        }
+
+        /* 3D-эффект для изображений с глубиной */
+        img {
+            max-width: 100%;
+            border-radius: 28px;
+            display: block;
+            transition: transform 0.4s ease;
+            box-shadow: 0 18px 28px -12px rgba(0,0,0,0.2);
+        }
+        img:hover {
+            transform: scale(1.01);
+        }
+
+        /* Стили навигации и футера */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+            background: rgba(255,255,250,0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 80px;
+            padding: 0.8rem 2rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .logo {
+            font-weight: 700;
+            font-size: 1.7rem;
+            background: linear-gradient(120deg, #2c3e4e, #5a6e7e);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .nav-links a {
+            margin-left: 1.8rem;
+            text-decoration: none;
+            font-weight: 500;
+            color: #2c3e4e;
+        }
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2dfd3;
+            color: #5b5a6e;
+        }
+        @media (max-width: 700px) {
+            .main-wrapper { padding: 1rem; }
+            .navbar { flex-direction: column; gap: 10px; border-radius: 32px; }
+            .nav-links a { margin: 0 0.8rem; }
+        }
+    </style>
+</head>
+<body class="parallax-bg">
+<div class="main-wrapper">
+    <!-- Навигация (легкая, без перегрузки) -->
+    <div class="navbar fade-up visible">
+        <div class="logo">ГРАВИТАЦИЯ</div>
+        <div class="nav-links">
+            <a href="#about">О школе</a>
+            <a href="#classes">Занятия</a>
+            <a href="#prices">Цены</a>
+            <a href="#teacher">Преподаватель</a>
+            <a href="#contacts">Контакты</a>
+        </div>
+    </div>
+
+    <!-- HERO - главный заголовок с фото и 3D-текстом -->
+    <div class="hero fade-up" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-bottom: 4rem;">
+        <div>
+            <h1>Школа выравнивания<br>«ГРАВИТАЦИЯ»</h1>
+            <p style="font-size: 1.2rem; margin: 1rem 0 1.5rem;">Йога точного выравнивания в Твери. Ровная спина, красивая осанка, здоровый позвоночник.</p>
+            <a href="#contacts" class="btn">Записаться на пробное занятие 500₽</a>
+        </div>
+        <div class="card-3d" style="padding: 0.5rem; background: transparent; box-shadow: none;">
+            <img src="https://picsum.photos/id/118/600/450" alt="Студия Гравитация" style="border-radius: 32px; width: 100%; object-fit: cover;">
+        </div>
+    </div>
+
+    <!-- О школе — текст и атмосфера -->
+    <div id="about" class="fade-up" style="margin: 4rem 0;">
+        <h2>О школе</h2>
+        <div class="grid-2col" style="grid-template-columns: 1.3fr 0.7fr;">
+            <div class="card-3d" style="padding: 2rem;">
+                <p style="font-size: 1.1rem; margin-bottom: 1rem;">Занятия проходят в уютной студии на 2 этаже двухэтажного здания, через мансардные окна которой днем солнце наполняет пространство теплом и светом, а по ночам заглядывают звезды.</p>
+                <p>С помощью нехитрых упражнений на специальном оборудовании отстраиваем ровную спину, формируем красивую осанку, наполняем силой и здоровьем позвоночник. Метод основан на природной гравитации — отсюда название школы.</p>
+                <p style="margin-top: 1rem;"><strong>📍 Адрес:</strong> г. Тверь, ул. Московская, д.82, строение 1, этаж 2</p>
+            </div>
+            <div class="card-3d" style="padding: 0; overflow: hidden;">
+                <img src="https://picsum.photos/id/20/500/350" alt="Интерьер студии">
+            </div>
+        </div>
+    </div>
+
+    <!-- Виды занятий (карточки 3D) -->
+    <div id="classes" class="fade-up">
+        <h2>Виды занятий</h2>
+        <div class="services-grid">
+            <div class="service-card">🌅 <strong>Утренние классы</strong><br>Пробуждение энергии перед рабочим днём.</div>
+            <div class="service-card">☀️ <strong>Дневные классы</strong><br>30-60 минут для снятия напряжения и перезагрузки.</div>
+            <div class="service-card">🌙 <strong>Вечерние классы</strong><br>Снятие усталости, расслабление после работы.</div>
+            <div class="service-card">🧘 <strong>Медитативные классы</strong><br>Подготовка ко сну, глубокое успокоение.</div>
+            <div class="service-card">👨‍👩‍👧 <strong>Родители + дети 10+</strong><br>Укрепление осанки и отношений.</div>
+            <div class="service-card">🌸 <strong>Для взрослых 60+</strong><br>Бережная забота о себе и близких.</div>
+            <div class="service-card">🩺 <strong>Терапевтические классы</strong><br>При протрузиях, грыжах, болях в спине.</div>
+            <div class="service-card">⚡ <strong>Интенсивные классы</strong><br>Укрепление постуральных мышц и силы.</div>
+        </div>
+    </div>
+
+    <!-- Результаты и преимущества -->
+    <div class="fade-up">
+        <h2>Что дают занятия</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">✅ Снятие головных болей и болей в шее</div>
+            <div class="benefit-item">✅ Исчезновение напряжения в спине и суставах</div>
+            <div class="benefit-item">✅ Лёгкая походка, ровная осанка</div>
+            <div class="benefit-item">✅ Укрепление иммунитета, энергия</div>
+            <div class="benefit-item">✅ Баланс тела и душевная гармония</div>
+            <div class="benefit-item">✅ Индивидуальный комплекс для дома</div>
+        </div>
+    </div>
+
+    <!-- Оборудование (3D-карточки) -->
+    <div class="fade-up">
+        <h2>Оборудование для точного выравнивания</h2>
+        <div class="equip-grid">
+            <div class="equip-card"><strong>Планка</strong> — возвращает подвижность верхней части спины, убирает боль в шее и пояснице.</div>
+            <div class="equip-card"><strong>Валик / Войлочный мат</strong> — расслабляет двигательные мышцы, освобождает позвоночник.</div>
+            <div class="equip-card"><strong>Блок</strong> — опора для вытяжения позвоночника и укрепления постуральных мышц.</div>
+            <div class="equip-card"><strong>Бэкбендер</strong> — мобилизует позвоночник, помогает в прогибах и наклонах.</div>
+            <div class="equip-card"><strong>Хедстендер</strong> — перевернутые позы без нагрузки на шею, выравнивание скелета.</div>
+        </div>
+    </div>
+
+    <!-- Цены + абонементы -->
+    <div id="prices" class="fade-up">
+        <h2>Стоимость и абонементы</h2>
+        <div class="prices-grid">
+            <div class="price-card"><strong>🧘 Ознакомительный класс</strong><br>500 ₽</div>
+            <div class="price-card"><strong>⭐ Начальный уровень (90 мин)</strong><br>900 ₽ / разово</div>
+            <div class="price-card"><strong>⭐ Здоровая спина (60 мин)</strong><br>700 ₽ / разово</div>
+            <div class="price-card"><strong>👥 Мини-группа 2 чел. (90 мин)</strong><br>3000 ₽</div>
+            <div class="price-card"><strong>🎓 Индивидуальный урок 60 мин</strong><br>2500 ₽</div>
+            <div class="price-card"><strong>📆 4 занятия (Начальный)</strong><br>3400 ₽ (1 мес)</div>
+            <div class="price-card"><strong>📆 10 занятий (Начальный)</strong><br>8000 ₽ (2 мес)</div>
+            <div class="price-card"><strong>📆 20 занятий (Начальный)</strong><br>15000 ₽ (3 мес)</div>
+        </div>
+        <p style="margin-top: 1rem; font-style: italic;">* Абонементы можно заморозить на 3 недели в год. Предупредите об отмене за 2 часа.</p>
+    </div>
+
+    <!-- Расписание и запись -->
+    <div class="fade-up card-3d" style="padding: 2rem; margin: 2rem 0; text-align: center;">
+        <h3 style="margin-bottom: 0.5rem;">📅 Расписание на этапе формирования</h3>
+        <p>Занятия проводятся по предварительной записи (Пн–Вс, гибкий график).</p>
+        <p style="margin: 1rem 0;">Запись на групповое, ознакомительное или индивидуальное занятие — по телефону или в мессенджерах:</p>
+        <a href="tel:+79290989909" class="btn" style="margin: 0.3rem;">📞 +7 (929) 098-99-09</a>
+        <a href="https://wa.me/79290989909" class="btn" style="background: #25a35c;">💬 WhatsApp</a>
+        <a href="https://t.me/jspine" class="btn" style="background: #26a5e4;">✈️ Telegram</a>
+    </div>
+
+    <!-- Преподаватель с фото и 3D-блоком -->
+    <div id="teacher" class="fade-up" style="display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; margin: 4rem 0;">
+        <div class="card-3d" style="padding: 0; overflow: hidden;">
+            <img src="https://picsum.photos/id/64/500/600" alt="Галина Лебедева">
+        </div>
+        <div class="teacher-card" style="padding: 2rem;">
+            <h3>Галина Лебедева</h3>
+            <p>Лицензированный преподаватель йоги и йога-терапии по методу Херта ван Льюэна. Прошла полный курс обучения у основателя метода Critical Alignment Yoga. Три года личной и групповой практики, сотни учеников с видимыми изменениями — свободная походка, ровная осанка, жизнь без боли.</p>
+            <p style="margin-top: 1rem;">Сертификаты: Critical Alignment Therapy (2023-2024), преподавательская лицензия института CAI. Регулярные ретриты и стажировки в Москве и Санкт-Петербурге.</p>
+        </div>
+    </div>
+
+    <!-- Контакты, карта и соцсети -->
+    <div id="contacts" class="fade-up">
+        <h2>Контакты и студия</h2>
+        <div class="grid-2col" style="margin-top: 1.5rem;">
+            <div class="contact-card" style="padding: 2rem;">
+                <p><strong>🏠 Адрес:</strong> г. Тверь, ул. Московская, д.82, строение 1, этаж 2</p>
+                <p><strong>📞 Телефон / WhatsApp / Telegram:</strong> <a href="tel:+79290989909">+7 (929) 098-99-09</a></p>
+                <p><strong>✍️ По вопросам записи:</strong> <a href="https://wa.me/79290989909">Написать в WhatsApp</a> или <a href="https://t.me/jspine">Telegram</a></p>
+                <p><strong>⏰ Режим работы:</strong> по записи, групповые и индивидуальные классы.</p>
+            </div>
+            <div class="card-3d" style="padding: 0; overflow: hidden;">
+                <img src="https://picsum.photos/id/96/600/400" alt="Расположение на карте">
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Школа выравнивания «ГРАВИТАЦИЯ» — йога точного выравнивания в Твери. Здоровый позвоночник, лёгкость и радость движения.</p>
+        <p style="margin-top: 1rem;">© 2025 Гравитация · Все материалы сохранены</p>
+    </footer>
+</div>
+
+<script>
+    // Плавное появление элементов при скролле (глубина анимации)
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -10px 0px' });
+    fadeElements.forEach(el => observer.observe(el));
+
+    // Очень лёгкий 3D-наклон всей страницы за движением мыши (необязательный, но атмосферный)
+    document.body.addEventListener('mousemove', (e) => {
+        const wrapper = document.querySelector('.main-wrapper');
+        if (!wrapper) return;
+        const x = (e.clientX / window.innerWidth - 0.5) * 1.2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 0.8;
+        wrapper.style.transform = `perspective(1400px) rotateX(${y * 0.3}deg) rotateY(${x * 0.4}deg)`;
+    });
+    document.body.addEventListener('mouseleave', () => {
+        const wrapper = document.querySelector('.main-wrapper');
+        if (wrapper) wrapper.style.transform = '';
+    });
+    // Уважаем предпочтения пользователя: отключаем анимации если нужно
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.body.style.transform = '';
+        const style = document.createElement('style');
+        style.innerHTML = '.fade-up { opacity: 1; transform: none; } .card-3d:hover, .service-card:hover { transform: none; }';
+        document.head.appendChild(style);
+    }
+</script>
+</body>
+</html>
