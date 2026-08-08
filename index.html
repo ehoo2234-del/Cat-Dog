@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Привет, я [Имя Фамилия] — сайты, которые приносят заявки</title>
+<meta name="description" content="Я [Имя Фамилия] — разработчик и маркетолог. Делаю сайты, которые приносят заявки: от идеи и дизайна до роста в Яндексе и Google. Работаю один-на-один, без менеджеров и посредников.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<!-- ===== ПРОГРЕСС СКРОЛЛА ===== -->
+<div class="progress" id="progressBar" aria-hidden="true"></div>
+
+<!-- ===== ШАПКА ===== -->
+<header class="header" id="top">
+  <div class="container header__inner">
+    <a href="#top" class="logo" aria-label="На главную">
+      <span class="logo__mono">ИФ</span>
+      <span class="logo__name">Имя&nbsp;Фамилия</span>
+    </a>
+    <nav class="nav" id="nav">
+      <a href="#services">Услуги</a>
+      <a href="#works">Кейсы</a>
+      <a href="#about">Обо мне</a>
+      <a href="#process">Процесс</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <a href="#contacts" class="btn btn--accent btn--sm header__cta">Обсудить проект</a>
+    <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero__aurora" aria-hidden="true">
+    <span class="aurora aurora--1"></span>
+    <span class="aurora aurora--2"></span>
+    <span class="aurora aurora--3"></span>
+    <span class="aurora aurora--4"></span>
+  </div>
+  <div class="hero__grid" aria-hidden="true"></div>
+  <div class="hero__3d" aria-hidden="true"></div>
+  <div class="container hero__inner">
+    <div class="hero__badge reveal">
+      <span class="hero__badge-dot"></span>
+      Открыт к новым проектам
+    </div>
+    <h1 class="hero__title reveal">
+      Привет, я <span class="hero__name text-gradient">[Имя&nbsp;Фамилия]</span><br>
+      делаю сайты, которые работают
+    </h1>
+    <p class="hero__typing reveal">
+      <span class="hero__typing-prefix">Помогаю бизнесу:</span>
+      <span class="typing" id="typing"></span><span class="typing__caret"></span>
+    </p>
+    <p class="hero__subtitle reveal">Разрабатываю сайты и интернет-магазины, продвигаю их в Яндексе и Google и отвечаю за результат лично. Без менеджеров, «кураторов» и обезличенных команд — за проектом стоит один человек: я.</p>
+    <div class="hero__row reveal">
+      <div class="hero__person">
+        <div class="hero__avatar"><span class="avatar-ring"></span>ИФ</div>
+        <div class="hero__person-info">
+          <div class="hero__person-name">[Имя Фамилия]</div>
+          <div class="hero__person-role">Разработчик · маркетолог · один-на-один</div>
+        </div>
+      </div>
+      <div class="hero__actions">
+        <a href="#contacts" class="btn btn--accent">Обсудить проект</a>
+        <a href="#works" class="btn btn--ghost">Смотреть работы</a>
+      </div>
+    </div>
+    <ul class="hero__markers reveal">
+      <li>Отвечаю сам — без менеджеров</li>
+      <li>Цена понятна до старта</li>
+      <li>Результаты в цифрах</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===== БЕГУЩАЯ СТРОКА ===== -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>HTML / CSS / JS</span><i>✦</i><span>WordPress</span><i>✦</i><span>Tilda</span><i>✦</i><span>Яндекс.Метрика</span><i>✦</i><span>SEO</span><i>✦</i><span>UI / UX</span><i>✦</i><span>Сквозная аналитика</span><i>✦</i>
+    <span>HTML / CSS / JS</span><i>✦</i><span>WordPress</span><i>✦</i><span>Tilda</span><i>✦</i><span>Яндекс.Метрика</span><i>✦</i><span>SEO</span><i>✦</i><span>UI / UX</span><i>✦</i><span>Сквозная аналитика</span><i>✦</i>
+  </div>
+</div>
+
+<!-- ===== ЦИФРЫ ===== -->
+<section class="stats">
+  <div class="container stats__grid">
+    <div class="stats__item reveal">
+      <div class="stats__num"><span class="counter" data-target="7">0</span></div>
+      <p>лет делаю сайты и продвигаю их</p>
+    </div>
+    <div class="stats__item reveal">
+      <div class="stats__num"><span class="counter" data-target="40">0</span>+</div>
+      <p>проектов с нуля и до результата</p>
+    </div>
+    <div class="stats__item reveal">
+      <div class="stats__num"><span class="counter" data-target="98">0</span>%</div>
+      <p>клиентов возвращаются за доработками</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ПОЧЕМУ Я ===== -->
+<section class="section" id="why">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__kicker">Личный подход</span>
+      <h2 class="section__title">Почему стоит работать напрямую со мной</h2>
+      <p class="section__lead">Не агентство с воронками продаж и не биржа фриланса. Один человек, который берёт на себя весь проект и отвечает за него головой.</p>
+    </div>
+    <div class="cards-3">
+      <article class="card card--glass tilt reveal">
+        <div class="card__tile">🧑‍💻</div>
+        <h3>Вы знаете, кто делает ваш проект</h3>
+        <p>Общаюсь, проектирую и пишу код сам. Никакой передачи проекта между «кураторами» и потери смыслов.</p>
+      </article>
+      <article class="card card--glass tilt reveal">
+        <div class="card__tile">🤝</div>
+        <h3>Понятный процесс без сюрпризов</h3>
+        <p>Вы всегда видите, что я делаю. Показываю результат по этапам, а цену называю до старта — и она не меняется по пути.</p>
+      </article>
+      <article class="card card--glass tilt reveal">
+        <div class="card__tile">📊</div>
+        <h3>Отвечаю цифрами</h3>
+        <p>Конверсия, трафик, стоимость заявки. После запуска вы видите в отчётах, что проект работает, а не «красиво выглядит».</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== УСЛУГИ ===== -->
+<section class="section section--dark section--glow" id="services">
+  <div class="container">
+    <div class="section__head section__head--dark reveal">
+      <span class="section__kicker">Что я умею</span>
+      <h2 class="section__title">Три вещи, которые я делаю хорошо</h2>
+    </div>
+    <div class="cards-3">
+      <article class="service-card reveal">
+        <div class="service-card__tile">💻</div>
+        <h3>Разработка сайтов</h3>
+        <p>Сайты и интернет-магазины, которые продают: от прототипа и дизайна до вёрстки и запуска. Адаптив, скорость и базовая SEO-структура уже внутри.</p>
+        <ul class="service-card__list">
+          <li>Лендинги и корпоративные сайты</li>
+          <li>Интернет-магазины с оплатой</li>
+          <li>Прототип и структура до кода</li>
+        </ul>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-card__tile">📈</div>
+        <h3>SEO и рост в поиске</h3>
+        <p>Привожу целевой трафик из Яндекса и Google: семантика, технические правки, контент. Рост позиций — по плану, динамика — в отчётах.</p>
+        <ul class="service-card__list">
+          <li>Сбор и кластеризация семантики</li>
+          <li>Технический SEO и скорость</li>
+          <li>Контент и ссылки</li>
+        </ul>
+      </article>
+      <article class="service-card reveal">
+        <div class="service-card__tile">🛟</div>
+        <h3>Поддержка и развитие</h3>
+        <p>После запуска не пропадаю: слежу за работой, отвечаю быстро, дорабатываю по мере роста бизнеса и улучшаю конверсию по данным.</p>
+        <ul class="service-card__list">
+          <li>Быстрая реакция на проблемы</li>
+          <li>Доработки и новый функционал</li>
+          <li>Улучшение конверсии по данным</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== КЕЙСЫ ===== -->
+<section class="section section--gray" id="works">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__kicker">Кейсы</span>
+      <h2 class="section__title">Проекты, которыми я горжусь</h2>
+      <p class="section__lead">Каждый проект — с цифрами и историей. Выберите тип задачи, чтобы увидеть подходящие работы.</p>
+    </div>
+    <div class="tabs reveal" role="tablist" aria-label="Фильтр кейсов">
+      <button class="tab active" data-filter="all" role="tab" aria-selected="true">Все</button>
+      <button class="tab" data-filter="site" role="tab" aria-selected="false">Сайты</button>
+      <button class="tab" data-filter="shop" role="tab" aria-selected="false">Магазины</button>
+      <button class="tab" data-filter="seo" role="tab" aria-selected="false">SEO</button>
+      <button class="tab" data-filter="webapp" role="tab" aria-selected="false">Веб-сервисы</button>
+    </div>
+    <div class="works" id="worksGrid">
+      <article class="work reveal" data-category="site">
+        <div class="work__cover work__cover--1">
+          <div class="work__browser"><span></span><span></span><span></span></div>
+          <div class="work__emoji">🏗️</div>
+        </div>
+        <div class="work__body">
+          <div class="work__tag">Сайт компании</div>
+          <h3>Сайт для застройщика</h3>
+          <p>Пересобрал структуру и путь клиента: от первого экрана до бронирования — 3 шага вместо 6.</p>
+          <div class="work__stats">
+            <div class="work__stat"><span class="work__num">+28%</span><span class="work__label">конверсия в заявку</span></div>
+            <div class="work__stat"><span class="work__num">−3</span><span class="work__label">шага до бронирования</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="work reveal" data-category="shop">
+        <div class="work__cover work__cover--2">
+          <div class="work__browser"><span></span><span></span><span></span></div>
+          <div class="work__emoji">🛒</div>
+        </div>
+        <div class="work__body">
+          <div class="work__tag">Интернет-магазин</div>
+          <h3>Магазин с доставкой</h3>
+          <p>Запустил магазин с оплатой и интеграцией 1С. Первый месяц — 240 заказов без рекламного бюджета.</p>
+          <div class="work__stats">
+            <div class="work__stat"><span class="work__num">240</span><span class="work__label">заказов в первый месяц</span></div>
+            <div class="work__stat"><span class="work__num">+35%</span><span class="work__label">средний чек</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="work reveal" data-category="seo">
+        <div class="work__cover work__cover--3">
+          <div class="work__browser"><span></span><span></span><span></span></div>
+          <div class="work__emoji">🔍</div>
+        </div>
+        <div class="work__body">
+          <div class="work__tag">SEO</div>
+          <h3>Вывод в топ по коммерческим запросам</h3>
+          <p>Семантика, технические правки и контент: сайт клиники вышел в топ-3 по 18 запросам за 4 месяца.</p>
+          <div class="work__stats">
+            <div class="work__stat"><span class="work__num">Топ-3</span><span class="work__label">по 18 запросам</span></div>
+            <div class="work__stat"><span class="work__num">×2,4</span><span class="work__label">рост трафика</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="work reveal" data-category="webapp">
+        <div class="work__cover work__cover--4">
+          <div class="work__browser"><span></span><span></span><span></span></div>
+          <div class="work__emoji">⚙️</div>
+        </div>
+        <div class="work__body">
+          <div class="work__tag">Веб-сервис</div>
+          <h3>Личный кабинет для логистики</h3>
+          <p>Разработал сервис для отслеживания заказов с ролями и уведомлениями. Операторы экономят 2 часа в день.</p>
+          <div class="work__stats">
+            <div class="work__stat"><span class="work__num">2 ч</span><span class="work__label">экономии в день</span></div>
+            <div class="work__stat"><span class="work__num">−60%</span><span class="work__label">времени на звонки</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="work reveal" data-category="site">
+        <div class="work__cover work__cover--5">
+          <div class="work__browser"><span></span><span></span><span></span></div>
+          <div class="work__emoji">🧑‍⚕️</div>
+        </div>
+        <div class="work__body">
+          <div class="work__tag">Лендинг</div>
+          <h3>Сайт для частного врача</h3>
+          <p>Сделал лендинг с записью онлайн. Записи на приём идут напрямую в Telegram — без админа и телефона.</p>
+          <div class="work__stats">
+            <div class="work__stat"><span class="work__num">+70%</span><span class="work__label">записей в месяц</span></div>
+            <div class="work__stat"><span class="work__num">0</span><span class="work__label">пропущенных обращений</span></div>
+          </div>
+        </div>
+      </article>
+      <article class="work reveal" data-category="seo">
+        <div class="work__cover work__cover--6">
+          <div class="work__browser"><span></span><span></span><span></span></div>
+          <div class="work__emoji">📦</div>
+        </div>
+        <div class="work__body">
+          <div class="work__tag">SEO для e-commerce</div>
+          <h3>Рост продаж интернет-магазина</h3>
+          <p>Переработал каталог и карточки, ускорил сайт. Органический трафик вырос почти втрое, CPA снизился.</p>
+          <div class="work__stats">
+            <div class="work__stat"><span class="work__num">×2,8</span><span class="work__label">органический трафик</span></div>
+            <div class="work__stat"><span class="work__num">−18%</span><span class="work__label">стоимость заявки</span></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== ОБО МНЕ ===== -->
+<section class="section section--gray" id="about">
+  <div class="container">
+    <div class="about">
+      <div class="about__photo reveal">
+        <div class="about__avatar"><span class="avatar-ring avatar-ring--lg"></span><span class="about__initials">ИФ</span></div>
+        <div class="about__badge">✈️ Открыт к новым проектам</div>
+      </div>
+      <div class="about__info reveal">
+        <span class="section__kicker">Обо мне</span>
+        <h2 class="section__title">Меня зовут [Имя Фамилия]</h2>
+        <p class="about__text">Семь лет назад сделал первый лендинг другу — с тех пор не остановился. Совмещаю две роли: разработчика и маркетолога, поэтому сайты получаются не просто красивыми, а работающими.</p>
+        <p class="about__text">Работаю сам и беру не больше одного-двух проектов параллельно, чтобы каждому уделять внимание. Вы всегда знаете, на каком этапе проект и что будет дальше.</p>
+        <div class="about__stats">
+          <div class="about__stat"><span class="about__num">7 лет</span><span class="about__label">в разработке и SEO</span></div>
+          <div class="about__stat"><span class="about__num">40+</span><span class="about__label">проектов</span></div>
+          <div class="about__stat"><span class="about__num">2+ млн</span><span class="about__label">сессий проанализировано</span></div>
+        </div>
+        <div class="about__stack">
+          <span>HTML/CSS/JS</span><span>WordPress</span><span>Tilda</span><span>Яндекс.Метрика</span><span>Google Analytics</span><span>SEO-инструменты</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ПРОЦЕСС ===== -->
+<section class="section section--dark" id="process">
+  <div class="container">
+    <div class="section__head section__head--dark reveal">
+      <span class="section__kicker">Как я работаю</span>
+      <h2 class="section__title">Четыре шага от идеи до роста</h2>
+      <p class="section__lead section__lead--dark">Понятно, спокойно и без лишнего бюрократического шума.</p>
+    </div>
+    <div class="steps">
+      <article class="step reveal">
+        <div class="step__num">01</div>
+        <h3>Знакомство</h3>
+        <p>30 минут бесплатного звонка: вы рассказываете про бизнес и задачи, я — как вижу решение и во сколько это обойдётся.</p>
+      </article>
+      <article class="step reveal">
+        <div class="step__num">02</div>
+        <h3>Прототип и смета</h3>
+        <p>Через пару дней присылаю структуру будущего сайта и фиксированную смету. Всё по-человечески, без IT-сленга.</p>
+      </article>
+      <article class="step reveal">
+        <div class="step__num">03</div>
+        <h3>Разработка</h3>
+        <p>Собираю по этапам и показываю результат. Вы видите, что и зачем появляется на сайте, а не ждёте «финальную версию из ниоткуда».</p>
+      </article>
+      <article class="step reveal">
+        <div class="step__num">04</div>
+        <h3>Запуск и рост</h3>
+        <p>После запуска настраиваю аналитику, продвигаю в поиске и дорабатываю по данным. Проект растёт, даже когда мы не на связи.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== ОТЗЫВЫ ===== -->
+<section class="section section--gray" id="reviews">
+  <div class="container">
+    <div class="section__head reveal">
+      <span class="section__kicker">Отзывы</span>
+      <h2 class="section__title">Что говорят те, с кем я работал</h2>
+    </div>
+    <div class="slider reveal" id="reviewsSlider">
+      <div class="slider__viewport">
+        <div class="slider__track" id="reviewsTrack">
+          <article class="review">
+            <div class="review__head">
+              <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+              <span class="review__date">12 июля 2026</span>
+            </div>
+            <p class="review__text">«Боялся, что сайт будет красивым, но пустым. Через 7 недель у нас был работающий MVP: заявки на бронирование пошли в первую же неделю, конверсия выросла на 28%. Работали напрямую, без посредников и „менеджеров"».</p>
+            <div class="review__author">
+              <div class="review__avatar">А</div>
+              <div>
+                <div class="review__name">Алексей</div>
+                <div class="review__meta">Директор девелопера · Москва</div>
+              </div>
+            </div>
+          </article>
+          <article class="review">
+            <div class="review__head">
+              <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+              <span class="review__date">3 июня 2026</span>
+            </div>
+            <p class="review__text">«Объясняет на человеческом языке, без IT-сленга. Показывал результат по этапам, смета не выросла ни на рубль. Через два месяца после запуска органический трафик вырос вдвое».</p>
+            <div class="review__author">
+              <div class="review__avatar">М</div>
+              <div>
+                <div class="review__name">Марина</div>
+                <div class="review__meta">CMO финтех-платформы · Санкт-Петербург</div>
+              </div>
+            </div>
+          </article>
+          <article class="review">
+            <div class="review__head">
+              <div class="review__stars" aria-label="Оценка 5 из 5">★★★★★</div>
+              <span class="review__date">19 апреля 2026</span>
+            </div>
+            <p class="review__text">«Через год мы перешли на свою команду — код и документацию передали в день релиза. Простой — ноль часов. Ценно, что работал один человек и всегда было с кем обсудить детали».</p>
+            <div class="review__author">
+              <div class="review__avatar">С</div>
+              <div>
+                <div class="review__name">Сергей</div>
+                <div class="review__meta">Основатель e-commerce · Казань</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="slider__controls">
+        <button class="slider__btn" id="sliderPrev" aria-label="Предыдущий отзыв">←</button>
+        <div class="slider__dots" id="sliderDots" role="tablist" aria-label="Слайды"></div>
+        <button class="slider__btn" id="sliderNext" aria-label="Следующий отзыв">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ===== КОНТАКТЫ ===== -->
+<section class="section section--dark section--contacts" id="contacts">
+  <div class="container">
+    <div class="form-card reveal">
+      <div class="form-card__info">
+        <span class="section__kicker">Контакты</span>
+        <h2 class="form-card__title">Обсудим ваш проект?</h2>
+        <p class="form-card__text">Напишите пару слов о задаче — отвечу лично в течение пары часов в рабочее время. Без спама и навязчивых звонков.</p>
+        <ul class="form-card__guarantees">
+          <li>Отвечаю сам, без секретарей</li>
+          <li>Первая консультация бесплатна</li>
+          <li>Цену называю до старта</li>
+        </ul>
+        <div class="form-card__contacts">
+          <a href="https://t.me/username" class="contact-chip">✈️ Telegram: @username</a>
+          <a href="mailto:hello@mail.ru" class="contact-chip">✉️ hello@mail.ru</a>
+        </div>
+      </div>
+      <form class="form" id="leadForm" novalidate>
+        <div class="form__field">
+          <label for="name">Ваше имя</label>
+          <input type="text" id="name" name="name" placeholder="Как к вам обращаться" required>
+        </div>
+        <div class="form__field">
+          <label for="contact">Телефон или Telegram</label>
+          <input type="text" id="contact" name="contact" placeholder="+7 900 000-00-00 / @username" required>
+        </div>
+        <div class="form__field">
+          <label for="comment">Коротко о задаче</label>
+          <textarea id="comment" name="comment" rows="3" placeholder="Например: нужен сайт-визитка с формой записи"></textarea>
+        </div>
+        <button type="submit" class="btn btn--accent btn--full">Написать мне</button>
+        <p class="form__privacy">Отправляя форму, вы соглашаетесь на обработку персональных данных.</p>
+        <p class="form__success" id="formSuccess" hidden>Спасибо! Я получил ваше сообщение и напишу вам лично.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ===== ФУТЕР ===== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <a href="#top" class="logo">
+        <span class="logo__mono">ИФ</span>
+        <span class="logo__name">Имя&nbsp;Фамилия</span>
+      </a>
+      <p>Разработка и продвижение сайтов под ключ. Один человек — полная ответственность за результат.</p>
+    </div>
+    <nav class="footer__nav">
+      <a href="#services">Услуги</a>
+      <a href="#works">Кейсы</a>
+      <a href="#about">Обо мне</a>
+      <a href="#process">Процесс</a>
+      <a href="#reviews">Отзывы</a>
+      <a href="#contacts">Контакты</a>
+    </nav>
+    <div class="footer__proof">
+      <div class="proof-item"><strong>7 лет</strong> в разработке и SEO</div>
+      <div class="proof-item"><strong>40+</strong> проектов под ключ</div>
+      <div class="proof-item"><strong>98%</strong> клиентов возвращаются</div>
+    </div>
+  </div>
+  <div class="container footer__bottom">
+    <span>© 2026 [Имя Фамилия]. Сделано вручную, с любовью.</span>
+    <span class="footer__contacts">Telegram: <a href="https://t.me/username">@username</a> · Email: <a href="mailto:hello@mail.ru">hello@mail.ru</a></span>
+  </div>
+</footer>
+
+<!-- Three.js с CDN (как Google Fonts). Без сети анимация просто не запустится — сайт работает как раньше. -->
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script defer src="js/three-hero.js"></script>
+<script defer src="js/main.js"></script>
+</body>
+</html>
+
